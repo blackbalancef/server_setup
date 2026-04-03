@@ -1,51 +1,51 @@
 # Server Setup
 
-Bash-скрипт для быстрой настройки нового Ubuntu/Debian сервера. Одна команда — и сервер готов к работе.
+One-command setup script for a fresh Ubuntu/Debian server.
 
-## Что устанавливается
+## What gets installed
 
-| Модуль | Описание | Флаг отключения |
-|--------|----------|-----------------|
-| **Base** | `apt update/upgrade`, curl, git, htop, tmux, vim, jq и др. | `--no-base` |
+| Module | Description | Disable flag |
+|--------|-------------|--------------|
+| **Base** | `apt update/upgrade`, curl, git, htop, tmux, vim, jq, etc. | `--no-base` |
 | **Firewall** | UFW: deny incoming, allow outgoing, allow SSH | `--no-firewall` |
-| **SSH Hardening** | fail2ban: бан на 1 час после 3 неудачных попыток за 10 мин | `--no-ssh-harden` |
-| **Docker** | Docker CE + Compose + Buildx из официального репозитория | `--no-docker` |
+| **SSH Hardening** | fail2ban: 1-hour ban after 3 failed attempts within 10 min | `--no-ssh-harden` |
+| **Docker** | Docker CE + Compose + Buildx from the official repository | `--no-docker` |
 | **Claude Code** | Node.js LTS + Claude Code CLI + ccstatusline | `--no-claude` |
-| **gh / glab** | GitHub CLI и GitLab CLI | `--no-gh` |
-| **Oh My Zsh** | Zsh + Oh My Zsh для текущего пользователя | `--no-ohmyzsh` |
+| **gh / glab** | GitHub CLI and GitLab CLI | `--no-gh` |
+| **Oh My Zsh** | Zsh + Oh My Zsh for the current user | `--no-ohmyzsh` |
 
-## Быстрый старт
+## Quick start
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/blackbalancef/server_setup/main/setup.sh | sudo bash
 ```
 
-## Выборочная установка
+## Selective install
 
 ```bash
-# Без Docker и Claude
+# Skip Docker and Claude
 curl -fsSL https://raw.githubusercontent.com/blackbalancef/server_setup/main/setup.sh | sudo bash -s -- --no-docker --no-claude
 
-# Только базовые пакеты и firewall
+# Only base packages and firewall
 curl -fsSL https://raw.githubusercontent.com/blackbalancef/server_setup/main/setup.sh | sudo bash -s -- --no-ssh-harden --no-docker --no-claude --no-gh --no-ohmyzsh
 ```
 
-## Требования
+## Requirements
 
-- Ubuntu или Debian
-- Root-доступ (sudo)
-- Доступ в интернет
+- Ubuntu or Debian
+- Root access (sudo)
+- Internet connection
 
-## Структура
+## Structure
 
 ```
-setup.sh              # Точка входа
+setup.sh              # Entry point
 modules/
-  base.sh             # Базовые пакеты
+  base.sh             # Base packages
   firewall.sh         # UFW
   ssh_harden.sh       # fail2ban
   docker.sh           # Docker CE
-  claude.sh           # Claude Code
+  claude.sh           # Claude Code + ccstatusline
   gh_glab.sh          # gh + glab
   ohmyzsh.sh          # Oh My Zsh
 ```
