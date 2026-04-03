@@ -30,6 +30,10 @@ INSTALL_CLAUDE=true
 INSTALL_GH=true
 INSTALL_OHMYZSH=true
 INSTALL_ZELLIJ=true
+INSTALL_SWAP=true
+INSTALL_SYSCTL=true
+INSTALL_AUTO_UPDATES=true
+INSTALL_JOURNALD=true
 
 # --- Parse flags ---
 while [[ $# -gt 0 ]]; do
@@ -42,6 +46,10 @@ while [[ $# -gt 0 ]]; do
         --no-gh)         INSTALL_GH=false ;;
         --no-ohmyzsh)    INSTALL_OHMYZSH=false ;;
         --no-zellij)     INSTALL_ZELLIJ=false ;;
+        --no-swap)       INSTALL_SWAP=false ;;
+        --no-sysctl)     INSTALL_SYSCTL=false ;;
+        --no-auto-updates) INSTALL_AUTO_UPDATES=false ;;
+        --no-journald)   INSTALL_JOURNALD=false ;;
         --help|-h)
             echo "Usage: setup.sh [OPTIONS]"
             echo ""
@@ -54,6 +62,10 @@ while [[ $# -gt 0 ]]; do
             echo "  --no-gh          Skip gh/glab CLI installation"
             echo "  --no-ohmyzsh     Skip Oh My Zsh installation"
             echo "  --no-zellij      Skip Zellij installation"
+            echo "  --no-swap        Skip swap file creation"
+            echo "  --no-sysctl      Skip kernel tuning"
+            echo "  --no-auto-updates Skip unattended security upgrades"
+            echo "  --no-journald    Skip journald log limits"
             echo "  -h, --help       Show this help"
             exit 0
             ;;
@@ -132,6 +144,10 @@ echo ""
 [[ "$INSTALL_GH"         == true ]] && run_module "gh_glab.sh"    "GitHub/GitLab CLI"
 [[ "$INSTALL_OHMYZSH"   == true ]] && run_module "ohmyzsh.sh"    "Oh My Zsh"
 [[ "$INSTALL_ZELLIJ"   == true ]] && run_module "zellij.sh"     "Zellij"
+[[ "$INSTALL_SWAP"     == true ]] && run_module "swap.sh"       "Swap (2 GB)"
+[[ "$INSTALL_SYSCTL"   == true ]] && run_module "sysctl_tune.sh" "Kernel Tuning"
+[[ "$INSTALL_AUTO_UPDATES" == true ]] && run_module "auto_updates.sh" "Unattended Upgrades"
+[[ "$INSTALL_JOURNALD" == true ]] && run_module "journald.sh"   "Journald Limits"
 
 echo -e "${GREEN}╔══════════════════════════════════════╗${NC}"
 echo -e "${GREEN}║      Setup complete!                 ║${NC}"
