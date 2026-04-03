@@ -10,7 +10,7 @@ Bash-скрипт для быстрой настройки нового Ubuntu/D
 | **Firewall** | UFW: deny incoming, allow outgoing, allow SSH | `--no-firewall` |
 | **SSH Hardening** | fail2ban: бан на 1 час после 3 неудачных попыток за 10 мин | `--no-ssh-harden` |
 | **Docker** | Docker CE + Compose + Buildx из официального репозитория | `--no-docker` |
-| **Claude Code** | Node.js LTS + Claude Code CLI | `--no-claude` |
+| **Claude Code** | Node.js LTS + Claude Code CLI + ccstatusline | `--no-claude` |
 | **gh / glab** | GitHub CLI и GitLab CLI | `--no-gh` |
 | **Oh My Zsh** | Zsh + Oh My Zsh для текущего пользователя | `--no-ohmyzsh` |
 
