@@ -29,6 +29,7 @@ INSTALL_DOCKER=true
 INSTALL_CLAUDE=true
 INSTALL_GH=true
 INSTALL_OHMYZSH=true
+INSTALL_ZELLIJ=true
 
 # --- Parse flags ---
 while [[ $# -gt 0 ]]; do
@@ -40,6 +41,7 @@ while [[ $# -gt 0 ]]; do
         --no-claude)     INSTALL_CLAUDE=false ;;
         --no-gh)         INSTALL_GH=false ;;
         --no-ohmyzsh)    INSTALL_OHMYZSH=false ;;
+        --no-zellij)     INSTALL_ZELLIJ=false ;;
         --help|-h)
             echo "Usage: setup.sh [OPTIONS]"
             echo ""
@@ -51,6 +53,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --no-claude      Skip Claude Code installation"
             echo "  --no-gh          Skip gh/glab CLI installation"
             echo "  --no-ohmyzsh     Skip Oh My Zsh installation"
+            echo "  --no-zellij      Skip Zellij installation"
             echo "  -h, --help       Show this help"
             exit 0
             ;;
@@ -128,6 +131,7 @@ echo ""
 [[ "$INSTALL_CLAUDE"     == true ]] && run_module "claude.sh"     "Claude Code"
 [[ "$INSTALL_GH"         == true ]] && run_module "gh_glab.sh"    "GitHub/GitLab CLI"
 [[ "$INSTALL_OHMYZSH"   == true ]] && run_module "ohmyzsh.sh"    "Oh My Zsh"
+[[ "$INSTALL_ZELLIJ"   == true ]] && run_module "zellij.sh"     "Zellij"
 
 echo -e "${GREEN}╔══════════════════════════════════════╗${NC}"
 echo -e "${GREEN}║      Setup complete!                 ║${NC}"

@@ -13,6 +13,7 @@ One-command setup script for a fresh Ubuntu/Debian server.
 | **Claude Code** | Node.js LTS + Claude Code CLI + ccstatusline | `--no-claude` |
 | **gh / glab** | GitHub CLI and GitLab CLI | `--no-gh` |
 | **Oh My Zsh** | Zsh + Oh My Zsh for the current user | `--no-ohmyzsh` |
+| **Zellij** | Zellij terminal multiplexer | `--no-zellij` |
 
 ## Quick start
 
@@ -48,4 +49,5 @@ modules/
   claude.sh           # Claude Code + ccstatusline
   gh_glab.sh          # gh + glab
   ohmyzsh.sh          # Oh My Zsh
+  zellij.sh           # Zellij
 ```
