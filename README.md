@@ -85,6 +85,29 @@ Enables automatic installation of security patches from official repositories. O
 
 Caps systemd journal storage at 500 MB with a 30-day retention period and compression enabled. Without this, logs can quietly grow to fill the entire disk over months, eventually causing service failures. This module prevents that while keeping enough history for debugging.
 
+## Uninstall
+
+To reverse all changes and remove everything that was installed:
+
+```bash
+sudo bash uninstall.sh
+```
+
+Selective removal:
+
+```bash
+# Remove only Docker
+sudo bash uninstall.sh --only-docker
+
+# Remove everything except Oh My Zsh and Zellij
+sudo bash uninstall.sh --no-ohmyzsh --no-zellij
+
+# Skip confirmation prompt
+sudo bash uninstall.sh --force
+```
+
+The script supports the same `--no-*` flags as `setup.sh`, plus `--only-*` flags for removing specific modules. Run `sudo bash uninstall.sh --help` for the full list.
+
 ## Quick start
 
 ```bash
@@ -132,6 +155,7 @@ The heaviest modules are **Docker** and **Claude Code** (Node.js). Use `--no-doc
 
 ```
 setup.sh              # Entry point
+uninstall.sh          # Reverse all changes
 modules/
   base.sh             # Base packages
   firewall.sh         # UFW
