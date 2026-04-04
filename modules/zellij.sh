@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if command -v zellij &>/dev/null; then
+    echo "Zellij is already installed ($(zellij --version)), skipping"
+    exit 0
+fi
+
 ARCH=$(dpkg --print-architecture)
 
 case "$ARCH" in

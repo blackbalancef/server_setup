@@ -11,7 +11,11 @@ if ! command -v node &>/dev/null; then
     apt-get install -y nodejs
 fi
 
-npm install -g @anthropic-ai/claude-code
+if command -v claude &>/dev/null; then
+    echo "Claude Code is already installed, skipping"
+else
+    npm install -g @anthropic-ai/claude-code
+fi
 
 # --- Configure ccstatusline for the real user ---
 REAL_USER="${SUDO_USER:-root}"
