@@ -18,7 +18,9 @@ fi
 
 # --- GitLab CLI (glab) ---
 if ! command -v glab &>/dev/null; then
-    curl -fsSL "https://gitlab.com/gitlab-org/cli/-/releases/permalink/latest/downloads/glab_$(dpkg --print-architecture).deb" \
+    GLAB_VERSION=$(curl -fsSL "https://gitlab.com/api/v4/projects/34675721/releases/permalink/latest" | jq -r '.tag_name' | sed 's/^v//')
+    GLAB_ARCH=$(dpkg --print-architecture)
+    curl -fsSL "https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_linux_${GLAB_ARCH}.deb" \
         -o /tmp/glab.deb
     dpkg -i /tmp/glab.deb
     rm -f /tmp/glab.deb
